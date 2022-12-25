@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/btn_profile.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/custom_edtext.xml" value="0.116" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_date_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_mail_outline_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_person.xml" value="0.1" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_phone_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_search_24.xml" value="0.1015" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/ic_sex_24.xml" value="0.114" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/item_selector.xml" value="0.1015" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/nav_backround.xml" value="0.1" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/drawable/transparent_backround.xml" value="0.179" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout-w1240dp/activity_login2.xml" value="0.11546184738955824" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout-w936dp/activity_login2.xml" value="0.134765625" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_add_question.xml" value="0.165625" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_answer.xml" value="0.16666666666666666" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_answer_ques.xml" value="0.1796875" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_ask.xml" value="0.16666666666666666" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_change_password.xml" value="0.1796875" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_home.xml" value="0.16666666666666666" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_login2.xml" value="0.1796875" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_profile.xml" value="0.22" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/item_qa.xml" value="0.22" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/list_subject.xml" value="0.1796875" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/profile.xml" value="0.1796875" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/layout/toolbar.xml" value="0.22" />
+        <entry key="..\:/Question_Answer_App/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

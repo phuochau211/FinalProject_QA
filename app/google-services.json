@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "355184413411",
+    "firebase_url": "https://qa-app-913ac-default-rtdb.firebaseio.com",
+    "project_id": "qa-app-913ac",
+    "storage_bucket": "qa-app-913ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355184413411:android:989679b811b3ace91e93d6",
+        "android_client_info": {
+          "package_name": "com.example.question_answer_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355184413411-db16fqui42pv2h4bk9bennddnlccergb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.question_answer_app",
+            "certificate_hash": "d335ea83e0b6d6abf6e9af86c9bdc6e874f451cc"
+          }
+        },
+        {
+          "client_id": "355184413411-hf5vim47k6k0ue950eguhfo8939dcnkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe1TSb8ZUCd2bTJviq_EV03jFYF4OE9I4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355184413411-hf5vim47k6k0ue950eguhfo8939dcnkv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
