@@ -1,12 +1,17 @@
 package com.example.question_answer_app;
 
 public class Question {
-    int imgAvata;
-    String nameP, subject, question;
-    double rating;
+    int imgAvatar;
+    String nameP, subject, question,rating;
 
-    public Question(int imgAvata, String nameP, String subject, String question, double rating) {
-        this.imgAvata = imgAvata;
+    public Question(){}
+
+    public Question(String nameP, String subject, String question) {
+        this.nameP = nameP;
+        this.subject = subject;
+        this.question = question;
+    }
+    public Question(String nameP, String subject, String question, String rating) {
         this.nameP = nameP;
         this.subject = subject;
         this.question = question;
@@ -14,11 +19,11 @@ public class Question {
     }
 
     public int getImgAvata() {
-        return imgAvata;
+        return imgAvatar;
     }
 
     public void setImgAvata(int imgAvata) {
-        this.imgAvata = imgAvata;
+        this.imgAvatar = imgAvata;
     }
 
     public String getNameP() {
@@ -45,11 +50,11 @@ public class Question {
         this.question = question;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 }

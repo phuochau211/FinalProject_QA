@@ -28,9 +28,6 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
-        EditText edMail = findViewById(R.id.edMail);
-        EditText edPass = findViewById(R.id.edPass);
-
         TextView tvLogin = findViewById(R.id.tvLogin);
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,19 +31,6 @@
             android:textColor="@color/bluemain"
             android:textSize="25dp"
             android:textStyle="bold" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/cimAvatarUser"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/avata"
-            app:civ_border_color="@color/bluemain"
-            app:civ_border_width="2dp" />
     </RelativeLayout>
 
     <View
@@ -55,15 +42,46 @@
         android:layout_marginRight="5dp"
         android:background="@color/bluemain" />
 
+    <RelativeLayout
+        android:id="@+id/layoutInfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/layoutHeader"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cimAvatarUser"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/avata" />
+
+        <TextView
+            android:id="@+id/tvNameP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/cimAvatarUser"
+            android:text="Daniel Trần"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfQuestion"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutHeader"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/layoutInfo"
+
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:textColorHint="@color/bluemain"
         app:boxStrokeWidth="2dp"
         app:boxStrokeWidthFocused="2dp"
@@ -91,9 +109,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tfQuestion"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:textColorHint="@color/bluemain"
         app:boxStrokeWidth="2dp"
         app:boxStrokeWidthFocused="2dp"
@@ -120,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tfSelect"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Rating Difficulty"
         android:textColor="@color/bluemain"
         android:textSize="25dp"
@@ -135,23 +153,41 @@
         android:layout_centerInParent="true"
         android:numStars="5" />
 
-    <TextView
-        android:id="@+id/tvRating"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layoutRating"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ratingbarDifficult"
         android:layout_marginLeft="20dp"
-        android:text="Level :"
-        android:textColor="@color/bluemain"
-        android:textSize="25dp"
-        android:textStyle="bold" />
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ratingbarDifficult"
+            android:text="Level: "
+            android:textColor="@color/bluemain"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNumStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:textColor="@color/bluemain"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAskQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvRating"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/layoutRating"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/bluemain"
         android:text="Ask Question"

@@ -50,6 +50,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ChangePasswordActivity.this, ProfileActivity.class);
                 startActivity(intent);
+                finishAffinity();
             }
         });
 

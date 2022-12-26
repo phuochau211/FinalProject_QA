@@ -1,5 +1,6 @@
 package com.example.question_answer_app;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.Random;
+import java.util.ResourceBundle;
 
 public class ProfileActivity extends AppCompatActivity{
     @Override
@@ -32,6 +41,10 @@ public class ProfileActivity extends AppCompatActivity{
         Uri photoUrl = user.getPhotoUrl();
         Glide.with(this).load(photoUrl).error(R.drawable.default_avatar).into(cimAvatar);
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+
         TextView tvNameP = findViewById(R.id.tvNameProfile);
         TextView tvName = findViewById(R.id.tvName);
         TextView tvMail = findViewById(R.id.tvEmail);
@@ -39,23 +52,27 @@ public class ProfileActivity extends AppCompatActivity{
         TextView tvGender = findViewById(R.id.tvGender);
         TextView tvYear = findViewById(R.id.tvYear);
         TextView tvPhone = findViewById(R.id.tvPhoneNum);
-        TextView tvProvine = findViewById(R.id.tvProvince);
+        TextView tvProvince = findViewById(R.id.tvProvince);
 
-        String email = user.getEmail();
-        String provine = user.getProviderId();
-        String phone = user.getPhoneNumber();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String UserId = auth.getCurrentUser().getUid();
 
-        tvMail.setText(email);
-        tvName.setText(email);
-        tvNameP.setText(email);
-        tvPhone.setText(phone);
+        DocumentReference documentReference = firebaseFirestore.collection("User").document(UserId);
 
-        if(tvProvine == null) {
-            tvProvine.setVisibility(View.GONE);
-        } else {
-            tvProvine.setVisibility(View.VISIBLE);
-            tvProvine.setText(provine);
-        }
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (value != null) {
+                    tvName.setText(value.getString("FullName"));
+                    tvNameP.setText(value.getString("FullName"));
+                    tvMail.setText(value.getString("Email"));
+                    tvYear.setText(value.getString("Year of Birth"));
+                    tvPhone.setText(value.getString("Phone Number"));
+                    tvProvince.setText(value.getString("Province"));
+                }
+            }
+        });
+
         TextView tvChangePass = findViewById(R.id.tv_changePassWord);
         tvChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +88,7 @@ public class ProfileActivity extends AppCompatActivity{
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finishAffinity();
             }
         });
 

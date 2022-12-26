@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +26,19 @@ public class AnswerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
 
+        TextView tvNameP = findViewById(R.id.tvNameP);
+        ImageView cimAvatarP = findViewById(R.id.cimAvatarQA);
+        TextView tvSubject = findViewById(R.id.tvSubject);
+        TextView tvQuestion = findViewById(R.id.tvQuestion);
+        TextView tvRating = findViewById(R.id.tvRating);
+        TextView tvNumStar = findViewById(R.id.tvNumStar);
+
+        cimAvatarP.setImageResource(R.drawable.default_avatar);
+        tvNameP.setText(getIntent().getStringExtra("NameP"));
+        tvSubject.setText(getIntent().getStringExtra("Subject"));
+        tvQuestion.setText(getIntent().getStringExtra("Question"));
+        tvNumStar.setText(getIntent().getStringExtra("Rating"));
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,9 +47,6 @@ public class AnswerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){

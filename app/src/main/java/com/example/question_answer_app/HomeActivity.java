@@ -1,23 +1,41 @@
 package com.example.question_answer_app;
 
+import static com.bumptech.glide.util.Util.getSnapshot;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +43,8 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView rcvQuestion;
-    private QuestionAdapter questionAdapter;
+    FirestoreRecyclerAdapter adapter;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +84,45 @@ public class HomeActivity extends AppCompatActivity {
 
         //RecycleView
         rcvQuestion = findViewById(R.id.rcvQuestion);
-        questionAdapter = new QuestionAdapter(this);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcvQuestion.setLayoutManager(linearLayoutManager);
-        
-        questionAdapter.setData(getListQuestion());
-        rcvQuestion.setAdapter(questionAdapter);
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+        Query query = firebaseFirestore.collection("Question");
+
+        FirestoreRecyclerOptions<Question> options = new FirestoreRecyclerOptions.Builder<Question>()
+                .setQuery(query, Question.class)
+                .build();
+
+        adapter = new FirestoreRecyclerAdapter<Question,QuestionViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull QuestionViewHolder holder, int position, @NonNull Question model) {
+                holder.bind(model);
+                holder.btnAnswer.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(HomeActivity.this, AnswerActivity.class);
+                                String namePerson = model.getNameP();
+                                intent.putExtra("NameP", namePerson);
+                                String subject = model.getSubject();
+                                intent.putExtra("Subject", subject);
+                                String question = model.getQuestion();
+                                intent.putExtra("Question", question);
+                                String rating = model.getRating();
+                                intent.putExtra("Rating", rating);
+                                startActivity(intent);
+                            }
+                        });
+            }
+            @Override
+            public QuestionViewHolder onCreateViewHolder(ViewGroup group, int i) {
+                View view = LayoutInflater.from(group.getContext())
+                        .inflate(R.layout.item_qa, group, false);
+                return new QuestionViewHolder(view);
+            }
+        };
+        rcvQuestion.setAdapter(adapter);
+
 
         //Bottom Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -87,7 +138,6 @@ public class HomeActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.home:
-                        return true;
                     case R.id.notification:
                         return true;
                     case R.id.questionAnswer:
@@ -98,19 +148,43 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
-    private List<Question> getListQuestion() {
-        List<Question> list = new ArrayList<>();
-        list.add(new Question(R.drawable.avata, "Question 1", "Subject 1", "What is your name??", 4));
-        list.add(new Question(R.drawable.avata2, "Question 2", "Subject 2", "What is your name??",3));
-        list.add(new Question(R.drawable.avatar3, "Question 3", "Subject 3", "What is your name??",5));
-        list.add(new Question(R.drawable.avata4, "Question 4", "Subject 4", "What is your name??",4.5));
-        list.add(new Question(R.drawable.avata, "Question 1", "Subject 1", "What is your name??",4));
-        list.add(new Question(R.drawable.avata2, "Question 2", "Subject 2", "What is your name??",3));
-        list.add(new Question(R.drawable.avatar3, "Question 3", "Subject 3", "What is your name??",5));
-        list.add(new Question(R.drawable.avata4, "Question 4", "Subject 4", "What is your name??",4.5));
-        return list;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+    class QuestionViewHolder extends RecyclerView.ViewHolder{
+
+        private ImageView imgAvatar;
+        private TextView nameP, subject, question, rating;
+        private Button btnAnswer;
+
+        public QuestionViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imgAvatar = itemView.findViewById(R.id.cimAvata);
+            nameP = itemView.findViewById(R.id.tvNameP);
+            subject = itemView.findViewById(R.id.tvSubject);
+            question = itemView.findViewById(R.id.tvQuestion);
+            rating = itemView.findViewById(R.id.tvNumStar);
+            btnAnswer = itemView.findViewById(R.id.btnAnswer);
+        }
+
+        public void bind(Question model) {
+
+            imgAvatar.setImageResource(R.drawable.default_avatar);
+            question.setText(model.getQuestion());
+            subject.setText(model.getSubject());
+            nameP.setText(model.getNameP());
+            rating.setText(model.getRating());
+        }
+    }
+
+
 }
